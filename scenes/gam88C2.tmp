@@ -1,0 +1,119 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceuus05vkjyeu"]
+
+[ext_resource type="PackedScene" uid="uid://w5oi5jj5uk0v" path="res://scenes/player.tscn" id="1_nlb1f"]
+[ext_resource type="Script" path="res://script/gameManager.gd" id="1_xc7d4"]
+[ext_resource type="Texture2D" uid="uid://cnxg08lpwj0mm" path="res://assets/long.png" id="3_jy4cg"]
+[ext_resource type="PackedScene" uid="uid://ds3famr1htjmv" path="res://scenes/HUD.tscn" id="4_jvcas"]
+
+[sub_resource type="GDScript" id="GDScript_jn4t6"]
+script/source = "extends CharacterBody2D
+
+
+const SPEEDX = 300.0
+const SPEEDY = 1000.0
+const ACCLERATIONY = 1000
+const ACCLERATIONX = 50
+
+
+var line = 2
+
+var direction = 0
+@onready var collisionShape = $CollisionShape2D
+
+
+func boost():
+	velocity.x += 100
+	print(\"boosted\")
+	
+func nerf():
+	velocity.x -= 100
+	if velocity.x < 0:
+		velocity.x = 0
+
+func stop_camera():
+	$Camera2D.anchor_mode
+
+func _input(event):
+	if event.is_action_pressed(\"DOWN\") && line != 3:
+		direction = 1
+	
+	if event.is_action_pressed(\"UP\") && line != 1:
+		direction = -1
+	
+	
+
+func _physics_process(delta):
+	velocity.x = move_toward(velocity.x,SPEEDX,delta * ACCLERATIONX)
+	velocity.y = move_toward(velocity.y,direction * SPEEDY,delta * ACCLERATIONY)
+	
+	if collisionShape.global_position.y > %gameManager.line2 && line == 1:
+		velocity.y = 0 
+		line = 2
+		direction = 0
+	
+	if collisionShape.global_position.y < %gameManager.line2 && line == 3:
+		velocity.y = 0 
+		line = 2
+		direction = 0
+	
+	if collisionShape.global_position.y < %gameManager.line1:
+		velocity.y = 0 
+		line = 1
+		direction = 0
+		collisionShape.global_position.y = %gameManager.line1
+	
+	if collisionShape.global_position.y > %gameManager.line3:
+		velocity.y = 0 
+		line = 3
+		direction = 0
+		collisionShape.global_position.y = %gameManager.line3
+	
+	move_and_slide()
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o3hng"]
+distance = -80.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4o6dv"]
+normal = Vector2(0, 1)
+distance = -14.0754
+
+[node name="Game" type="Node2D"]
+
+[node name="gameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_xc7d4")
+
+[node name="player" parent="." instance=ExtResource("1_nlb1f")]
+position = Vector2(-495, 93)
+script = SubResource("GDScript_jn4t6")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+limit_left = -575
+limit_top = -325
+limit_right = 14000
+limit_bottom = 0
+
+[node name="border" type="StaticBody2D" parent="."]
+modulate = Color(0.227451, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
+position = Vector2(1, 224)
+shape = SubResource("WorldBoundaryShape2D_o3hng")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
+position = Vector2(0, -272)
+scale = Vector2(1.20832, 1.34987)
+shape = SubResource("WorldBoundaryShape2D_4o6dv")
+
+[node name="obstacles" type="Node2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture_repeat = 2
+position = Vector2(7064, 0)
+scale = Vector2(1.01, 1.01)
+texture = ExtResource("3_jy4cg")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_jvcas")]

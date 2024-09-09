@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceuus05vkjyeu"]
+
+[ext_resource type="PackedScene" uid="uid://w5oi5jj5uk0v" path="res://scenes/player.tscn" id="1_nlb1f"]
+[ext_resource type="PackedScene" uid="uid://bnjqc0rwf88gc" path="res://scenes/obstacle.tscn" id="2_jjyol"]
+[ext_resource type="PackedScene" uid="uid://dmkp2wfofoprf" path="res://scenes/pickup.tscn" id="3_5dwki"]
+
+[sub_resource type="GDScript" id="GDScript_jn4t6"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+func boost():
+	velocity.x += 100
+	
+func nerf():
+	velocity.x -= 100
+	if velocity.x < 0:
+		velocity.x = 0
+
+func _input(event):
+	if event.is_action_pressed(\"DOWN\"):
+		velocity.y = SPEED
+	else: if event.is_action_pressed(\"UP\"):
+		velocity.y = -SPEED
+	
+	else:
+		velocity.y = move_toward(velocity.y,0,SPEED)
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	#if not is_on_floor():
+	#	velocity.y += gravity * delta
+
+	# Handle jump.
+	#if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+	#	velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	#var Xdirection = Input.get_axis(\"ui_left\", \"ui_right\")
+	#if Xdirection:
+	#	velocity.x = Xdirection * SPEED
+	#else:
+	#	velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	#var Ydirection = Input.get_axis(\"ui_up\", \"ui_down\")
+	#if Ydirection:
+	#	velocity.y = Ydirection * SPEED
+	#else:
+	#	velocity.y = move_toward(velocity.y, 0, SPEED)
+	
+	velocity.x = move_toward(velocity.x,300,SPEED)
+
+	move_and_slide()
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o3hng"]
+distance = -51.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4o6dv"]
+normal = Vector2(0, 1)
+
+[node name="Game" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_nlb1f")]
+position = Vector2(0, -1)
+script = SubResource("GDScript_jn4t6")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(0, 1)
+
+[node name="border" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
+position = Vector2(1, 224)
+shape = SubResource("WorldBoundaryShape2D_o3hng")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
+position = Vector2(0, -272)
+scale = Vector2(1.20832, 1.34987)
+shape = SubResource("WorldBoundaryShape2D_4o6dv")
+
+[node name="CollisionShape2D" parent="." instance=ExtResource("2_jjyol")]
+position = Vector2(642, 311)
+
+[node name="CollisionShape2D2" parent="." instance=ExtResource("2_jjyol")]
+position = Vector2(1151, 318)
+
+[node name="CollisionShape2D3" parent="." instance=ExtResource("2_jjyol")]
+position = Vector2(906, 313)
+
+[node name="CollisionShape2D4" parent="." instance=ExtResource("2_jjyol")]
+position = Vector2(319, 305)
+
+[node name="Area2D" parent="." instance=ExtResource("3_5dwki")]
+position = Vector2(252, -16)

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds3famr1htjmv"]
+
+[ext_resource type="Script" path="res://script/HUD.gd" id="1_q3xjm"]
+[ext_resource type="FontFile" uid="uid://b8eduqagdtywx" path="res://assets/TrueType/SFSportsNight.ttf" id="2_5slek"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2hsb"]
+font = ExtResource("2_5slek")
+font_size = 32
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k0yfg"]
+font = ExtResource("2_5slek")
+font_size = 32
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_q3xjm")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 248.0
+offset_top = 21.0
+offset_right = 371.0
+offset_bottom = 114.0
+
+[node name="name_label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -251.0
+offset_top = -27.0
+offset_right = -98.0
+offset_bottom = 29.0
+text = "PLAYER"
+label_settings = SubResource("LabelSettings_y2hsb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="time_label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -59.0
+offset_top = -11.0
+offset_right = -2.0
+offset_bottom = 15.0
+text = "2:15"
+label_settings = SubResource("LabelSettings_k0yfg")

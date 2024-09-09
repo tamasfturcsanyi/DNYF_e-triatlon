@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqqbdp6bmhfsn"]
+
+[ext_resource type="Script" path="res://script/cycle.gd" id="1_txroh"]
+[ext_resource type="Texture2D" uid="uid://b6dlx82y0eh0i" path="res://assets/bicikliútpng (1).png" id="2_hby0w"]
+[ext_resource type="PackedScene" uid="uid://dkjkvr01dejuk" path="res://scenes/cycling/cyclist.tscn" id="2_tgmde"]
+[ext_resource type="PackedScene" uid="uid://c8cw4fov2etiq" path="res://scenes/cycling/enemycyclist.tscn" id="4_yc4hg"]
+[ext_resource type="PackedScene" uid="uid://covcqordxtdk8" path="res://goal.tscn" id="5_c7v5j"]
+
+[node name="cycle" type="Node2D"]
+script = ExtResource("1_txroh")
+
+[node name="background" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture_repeat = 2
+position = Vector2(7354, 119)
+scale = Vector2(1.01, 1.01)
+texture = ExtResource("2_hby0w")
+
+[node name="Cyclist" parent="." instance=ExtResource("2_tgmde")]
+top_level = true
+
+[node name="Camera2D" type="Camera2D" parent="Cyclist"]
+zoom = Vector2(3, 3)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_yc4hg")]
+position = Vector2(-140, -2)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("4_yc4hg")]
+position = Vector2(129, -1)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("4_yc4hg")]
+position = Vector2(-58, -1)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("4_yc4hg")]
+position = Vector2(194, -1)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("4_yc4hg")]
+position = Vector2(71, 0)
+
+[node name="Sprite2D" parent="." instance=ExtResource("5_c7v5j")]
+position = Vector2(13981, 11)
+scale = Vector2(0.5, 0.5)
+
+[connection signal="victory" from="Cyclist" to="." method="_on_cyclist_victory"]

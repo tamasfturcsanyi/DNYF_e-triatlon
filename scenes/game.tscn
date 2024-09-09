@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceuus05vkjyeu"]
+
+[ext_resource type="Script" path="res://script/director.gd" id="2_megdc"]
+[ext_resource type="AudioStream" uid="uid://cms20y7dijo8s" path="res://assets/DNYFindulo.wav" id="3_xg0em"]
+[ext_resource type="AudioStream" uid="uid://vjl4475vqp63" path="res://assets/backtrack.wav" id="4_3rr8e"]
+[ext_resource type="PackedScene" uid="uid://ds3famr1htjmv" path="res://scenes/HUD.tscn" id="4_jvcas"]
+
+[node name="Game" type="Node2D"]
+
+[node name="director" type="Node" parent="."]
+script = ExtResource("2_megdc")
+
+[node name="HUD" parent="director" instance=ExtResource("4_jvcas")]
+
+[node name="full" type="AudioStreamPlayer" parent="director"]
+stream = ExtResource("3_xg0em")
+
+[node name="back" type="AudioStreamPlayer" parent="director"]
+stream = ExtResource("4_3rr8e")

@@ -1,0 +1,259 @@
+[gd_scene load_steps=22 format=3 uid="uid://bo50bi8ybplsm"]
+
+[ext_resource type="Script" path="res://script/victory.gd" id="1_v7r0b"]
+[ext_resource type="Texture2D" uid="uid://bc7j0bi1t0tq1" path="res://assets/perspekcthousze.png" id="1_yhmmw"]
+[ext_resource type="PackedScene" uid="uid://drykefib7aqu6" path="res://scenes/confetti.tscn" id="2_pull8"]
+[ext_resource type="PackedScene" uid="uid://covcqordxtdk8" path="res://goal.tscn" id="3_sf34w"]
+[ext_resource type="Texture2D" uid="uid://by4av7l4ht66g" path="res://assets/dnyfmcpng (1).png" id="4_ofnwp"]
+[ext_resource type="Texture2D" uid="uid://0n6kw4n2yxu2" path="res://assets/dnyfmcpngl.png" id="5_mqudw"]
+[ext_resource type="PackedScene" uid="uid://d0gr0x3byhk2v" path="res://scenes/swimming/cheerful.tscn" id="6_7u3lc"]
+[ext_resource type="PackedScene" uid="uid://bndbcyid18d55" path="res://scenes/leaderboard.tscn" id="8_wyhx6"]
+[ext_resource type="FontFile" uid="uid://b8eduqagdtywx" path="res://assets/TrueType/SFSportsNight.ttf" id="9_mkuo2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6y13"]
+atlas = ExtResource("4_ofnwp")
+region = Rect2(13, 5, 18, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j36nm"]
+atlas = ExtResource("4_ofnwp")
+region = Rect2(14, 51, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr4vt"]
+atlas = ExtResource("4_ofnwp")
+region = Rect2(14, 95, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfek1"]
+atlas = ExtResource("4_ofnwp")
+region = Rect2(14, 140, 18, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmyfq"]
+atlas = ExtResource("5_mqudw")
+region = Rect2(13, 5, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi3e3"]
+atlas = ExtResource("5_mqudw")
+region = Rect2(13, 50, 18, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cceci"]
+atlas = ExtResource("5_mqudw")
+region = Rect2(13, 94, 18, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jbv5h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6y13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j36nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr4vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfek1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmyfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi3e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cceci")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 4.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_16s0h"]
+font = ExtResource("9_mkuo2")
+font_size = 30
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nttmu"]
+font = ExtResource("9_mkuo2")
+font_size = 50
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ik3d0"]
+font = ExtResource("9_mkuo2")
+font_size = 64
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbfqp"]
+font = ExtResource("9_mkuo2")
+font_size = 64
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_v7r0b")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(1, 387)
+texture = ExtResource("1_yhmmw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.8, 1.8)
+
+[node name="Node2D" parent="." instance=ExtResource("2_pull8")]
+visible = false
+position = Vector2(11, -198)
+
+[node name="Sprite2D" parent="." instance=ExtResource("3_sf34w")]
+position = Vector2(2, 153)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
+[node name="player" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 107)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_jbv5h")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("6_7u3lc")]
+position = Vector2(-220, 94)
+scale = Vector2(3, 3)
+
+[node name="Leaderboard" parent="." instance=ExtResource("8_wyhx6")]
+
+[node name="board" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -176.0
+offset_top = -158.0
+offset_right = 141.0
+offset_bottom = 270.0
+
+[node name="1" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 51.0
+offset_right = 350.0
+offset_bottom = 77.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="2" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 78.0
+offset_right = 347.0
+offset_bottom = 104.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="3" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 104.0
+offset_right = 344.0
+offset_bottom = 130.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="4" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 131.0
+offset_right = 343.0
+offset_bottom = 157.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="5" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 158.0
+offset_right = 341.0
+offset_bottom = 184.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="6" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 182.0
+offset_right = 339.0
+offset_bottom = 208.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="7" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 211.0
+offset_right = 337.0
+offset_bottom = 237.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="8" type="Label" parent="board"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 240.0
+offset_right = 334.0
+offset_bottom = 266.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="9" type="Label" parent="board"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 266.0
+offset_right = 331.0
+offset_bottom = 292.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="10" type="Label" parent="board"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 294.0
+offset_right = 329.0
+offset_bottom = 320.0
+text = "1"
+label_settings = SubResource("LabelSettings_16s0h")
+
+[node name="Title" type="Label" parent="board"]
+layout_mode = 0
+offset_left = -43.0
+offset_top = 3.0
+offset_right = 418.0
+offset_bottom = 43.0
+text = "Player     Time"
+label_settings = SubResource("LabelSettings_nttmu")
+
+[node name="yourtime" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Score" type="Label" parent="yourtime"]
+offset_left = -185.0
+offset_top = -124.0
+offset_right = 174.0
+offset_bottom = -56.0
+text = "Your time:"
+label_settings = SubResource("LabelSettings_ik3d0")
+
+[node name="Score2" type="Label" parent="yourtime"]
+offset_left = -84.0
+offset_top = -47.0
+offset_right = 64.0
+offset_bottom = 4.0
+text = "time"
+label_settings = SubResource("LabelSettings_wbfqp")

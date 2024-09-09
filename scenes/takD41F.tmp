@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://des7kb4x87x"]
+
+[ext_resource type="PackedScene" uid="uid://c68lnx2p6a2t5" path="res://scenes/feet.tscn" id="1_7nces"]
+
+[node name="TakeOn" type="Node2D"]
+
+[node name="borders" type="Node" parent="."]
+
+[node name="feet" parent="." instance=ExtResource("1_7nces")]
+position = Vector2(-412, -2)
+
+[node name="Camera2D" type="Camera2D" parent="."]

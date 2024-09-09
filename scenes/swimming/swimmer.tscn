@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=3 uid="uid://cs3cdctpf5wjq"]
+
+[ext_resource type="Script" path="res://script/swimmer.gd" id="1_ja1cs"]
+[ext_resource type="Texture2D" uid="uid://chxs6iu4m8r46" path="res://assets/dnyfc (1).png" id="2_175ll"]
+[ext_resource type="Texture2D" uid="uid://cr2ubh4ru2hhw" path="res://assets/dnyfmc.png" id="2_nsx4r"]
+[ext_resource type="PackedScene" uid="uid://cjc8hc6af5gv5" path="res://scenes/swimming/waterparticles.tscn" id="3_vwq1w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h37vc"]
+atlas = ExtResource("2_175ll")
+region = Rect2(51, 18, 46, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htdsv"]
+atlas = ExtResource("2_175ll")
+region = Rect2(98, 19, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqs06"]
+atlas = ExtResource("2_175ll")
+region = Rect2(148, 19, 47, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp8yn"]
+atlas = ExtResource("2_175ll")
+region = Rect2(195, 19, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0l3a"]
+atlas = ExtResource("2_nsx4r")
+region = Rect2(48, 0, 49, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5un1y"]
+atlas = ExtResource("2_nsx4r")
+region = Rect2(97, 0, 49, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylxga"]
+atlas = ExtResource("2_nsx4r")
+region = Rect2(146, 0, 49, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en1br"]
+atlas = ExtResource("2_nsx4r")
+region = Rect2(195, 0, 49, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6g1h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h37vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htdsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqs06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp8yn")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0l3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5un1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylxga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en1br")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gagf"]
+radius = 8.01375
+height = 58.023
+
+[node name="swimmer" type="CharacterBody2D"]
+script = ExtResource("1_ja1cs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_n6g1h")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.304363
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.53674e-07, -1.90735e-06)
+rotation = -1.55619
+shape = SubResource("CapsuleShape2D_8gagf")
+one_way_collision_margin = 0.0
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("3_vwq1w")]
+position = Vector2(-20, 3)

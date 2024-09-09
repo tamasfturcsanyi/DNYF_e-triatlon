@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://c68lnx2p6a2t5"]
+
+[ext_resource type="Script" path="res://script/feet.gd" id="1_4al4f"]
+[ext_resource type="Texture2D" uid="uid://dbih4p165vp4q" path="res://assets/takeOn/lábl.png" id="2_wscfq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyqb4"]
+size = Vector2(11, 98.4375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3dby"]
+atlas = ExtResource("2_wscfq")
+region = Rect2(10, 8, 120, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqh8r"]
+atlas = ExtResource("2_wscfq")
+region = Rect2(152, 10, 100, 169)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eat2h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3dby")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqh8r")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[node name="feet" type="CharacterBody2D"]
+script = ExtResource("1_4al4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+top_level = true
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_hyqb4")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(10, -1)
+sprite_frames = SubResource("SpriteFrames_eat2h")
+animation = &"left"
+autoplay = "left"
+
+[connection signal="front" from="." to="." method="_on_front"]

@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://c10ypubalo1l6"]
+
+[ext_resource type="Script" path="res://script/run.gd" id="1_7rsek"]
+[ext_resource type="PackedScene" uid="uid://cduf715ahyfdo" path="res://scenes/running/runner.tscn" id="1_jqm82"]
+[ext_resource type="Texture2D" uid="uid://b6dlx82y0eh0i" path="res://assets/bicikliútpng (1).png" id="3_36aqx"]
+[ext_resource type="Texture2D" uid="uid://5xo3ojplu6f2" path="res://assets/icon.svg" id="3_38vh5"]
+[ext_resource type="Texture2D" uid="uid://0n6kw4n2yxu2" path="res://assets/dnyfmcpngl.png" id="4_uyd6p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_snddu"]
+font_size = 50
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7fkf"]
+atlas = ExtResource("4_uyd6p")
+region = Rect2(13, 216, 25, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgnc5"]
+atlas = ExtResource("4_uyd6p")
+region = Rect2(38, 216, 25, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vke3"]
+atlas = ExtResource("4_uyd6p")
+region = Rect2(63, 216, 25, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do5w3"]
+atlas = ExtResource("4_uyd6p")
+region = Rect2(87, 217, 24, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_781eu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_38vh5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7fkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgnc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vke3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do5w3")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Run" type="Node2D"]
+script = ExtResource("1_7rsek")
+
+[node name="Runner" parent="." instance=ExtResource("1_jqm82")]
+position = Vector2(1, 2)
+
+[node name="Camera2D" type="Camera2D" parent="Runner"]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="Runner"]
+offset_left = -67.0
+offset_top = 123.0
+offset_right = 65.0
+offset_bottom = 210.0
+label_settings = SubResource("LabelSettings_snddu")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Runner"]
+top_level = true
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_781eu")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="background" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture_repeat = 2
+position = Vector2(7051, 2)
+scale = Vector2(1.01, 1.01)
+texture = ExtResource("3_36aqx")
+
+[connection signal="victory" from="Runner" to="." method="_on_runner_victory"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://csio2ntxl5lv5"]
+
+[ext_resource type="Texture2D" uid="uid://cr2ubh4ru2hhw" path="res://assets/dnyfmc.png" id="1_djhcc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2884"]
+atlas = ExtResource("1_djhcc")
+region = Rect2(87, 96, 23, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5rvqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2884")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5rvqy")

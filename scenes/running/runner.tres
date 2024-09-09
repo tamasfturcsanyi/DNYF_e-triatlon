@@ -1,0 +1,73 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://doh4s12asuqq5"]
+
+[ext_resource type="Texture2D" uid="uid://0n6kw4n2yxu2" path="res://assets/dnyfmcpngl.png" id="2_d36cv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7fkf"]
+atlas = ExtResource("2_d36cv")
+region = Rect2(13, 216, 25, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgnc5"]
+atlas = ExtResource("2_d36cv")
+region = Rect2(38, 216, 25, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vke3"]
+atlas = ExtResource("2_d36cv")
+region = Rect2(63, 216, 25, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do5w3"]
+atlas = ExtResource("2_d36cv")
+region = Rect2(87, 217, 24, 43)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7fkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgnc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vke3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do5w3")
+}],
+"loop": false,
+"name": &"fast",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7fkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgnc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vke3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do5w3")
+}],
+"loop": false,
+"name": &"mid",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7fkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgnc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vke3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do5w3")
+}],
+"loop": false,
+"name": &"slow",
+"speed": 4.0
+}]

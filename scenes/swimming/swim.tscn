@@ -1,0 +1,163 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6mdvpho8ax6s"]
+
+[ext_resource type="PackedScene" uid="uid://cs3cdctpf5wjq" path="res://scenes/swimming/swimmer.tscn" id="1_lkidg"]
+[ext_resource type="Texture2D" uid="uid://brvf5l5gbgdoy" path="res://assets/swim/long.png" id="2_nhrx0"]
+[ext_resource type="Script" path="res://script/gameManager.gd" id="3_ohvrs"]
+[ext_resource type="PackedScene" uid="uid://d0gr0x3byhk2v" path="res://scenes/swimming/cheerful.tscn" id="4_50rd3"]
+[ext_resource type="PackedScene" uid="uid://coi7mt0r7usxt" path="res://scenes/swimming/cheer1.tscn" id="5_wy86n"]
+[ext_resource type="PackedScene" uid="uid://csio2ntxl5lv5" path="res://scenes/swimming/cheer2.tscn" id="6_h3o6r"]
+[ext_resource type="PackedScene" uid="uid://w5oi5jj5uk0v" path="res://scenes/swimming/enemySwimmer.tscn" id="7_ege65"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o3hng"]
+distance = -80.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4o6dv"]
+normal = Vector2(0, 1)
+distance = -7.40809
+
+[node name="Swim" type="Node2D"]
+script = ExtResource("3_ohvrs")
+
+[node name="swimmer" parent="." instance=ExtResource("1_lkidg")]
+position = Vector2(-474, 90)
+
+[node name="Camera2D" type="Camera2D" parent="swimmer"]
+position = Vector2(-4, -2)
+limit_left = -575
+limit_top = -325
+limit_right = 14000
+limit_bottom = 0
+
+[node name="border" type="StaticBody2D" parent="."]
+modulate = Color(0.227451, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
+position = Vector2(1, 224)
+shape = SubResource("WorldBoundaryShape2D_o3hng")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
+position = Vector2(2, -56)
+scale = Vector2(1.20832, 1.34987)
+shape = SubResource("WorldBoundaryShape2D_4o6dv")
+
+[node name="background" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture_repeat = 2
+position = Vector2(7064, 0)
+scale = Vector2(1.01, 1.01)
+texture = ExtResource("2_nhrx0")
+
+[node name="gameManager" type="Node" parent="."]
+
+[node name="fans" type="Node" parent="."]
+
+[node name="AnimatedSprite2D" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(4812, -113)
+
+[node name="AnimatedSprite2D2" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(5045, -114)
+
+[node name="AnimatedSprite2D3" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(5605, -111)
+
+[node name="AnimatedSprite2D4" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(3765, -116)
+
+[node name="AnimatedSprite2D5" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(3568, -119)
+
+[node name="AnimatedSprite2D6" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(-484, -118)
+
+[node name="AnimatedSprite2D7" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(-455, -118)
+
+[node name="AnimatedSprite2D8" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(-362, -120)
+
+[node name="AnimatedSprite2D9" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(-336, -120)
+
+[node name="AnimatedSprite2D10" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(-311, -120)
+
+[node name="AnimatedSprite2D11" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(-181, -120)
+
+[node name="AnimatedSprite2D12" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(424, -117)
+
+[node name="AnimatedSprite2D13" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(457, -118)
+
+[node name="AnimatedSprite2D14" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(483, -118)
+
+[node name="AnimatedSprite2D15" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(1714, -114)
+
+[node name="AnimatedSprite2D16" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(1747, -114)
+
+[node name="AnimatedSprite2D17" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(3722, -111)
+
+[node name="AnimatedSprite2D18" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(3034, -114)
+
+[node name="AnimatedSprite2D19" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(4850, -111)
+
+[node name="AnimatedSprite2D20" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(5656, -111)
+
+[node name="AnimatedSprite2D21" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(9080, -113)
+
+[node name="AnimatedSprite2D22" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(9117, -114)
+
+[node name="AnimatedSprite2D23" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(10367, -113)
+
+[node name="AnimatedSprite2D24" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(10400, -116)
+
+[node name="AnimatedSprite2D25" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(13661, -118)
+
+[node name="AnimatedSprite2D26" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(13910, -116)
+
+[node name="AnimatedSprite2D27" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(13878, -119)
+
+[node name="AnimatedSprite2D28" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(13692, -116)
+
+[node name="AnimatedSprite2D29" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(13723, -116)
+
+[node name="AnimatedSprite2D30" parent="fans" instance=ExtResource("5_wy86n")]
+position = Vector2(13848, -119)
+
+[node name="AnimatedSprite2D31" parent="fans" instance=ExtResource("4_50rd3")]
+position = Vector2(13486, -116)
+
+[node name="AnimatedSprite2D32" parent="fans" instance=ExtResource("6_h3o6r")]
+position = Vector2(13517, -114)
+
+[node name="enemy" parent="." instance=ExtResource("7_ege65")]
+position = Vector2(-481, 219)
+
+[node name="enemy2" parent="." instance=ExtResource("7_ege65")]
+position = Vector2(-467, -24)
+
+[node name="enemy3" parent="." instance=ExtResource("7_ege65")]
+position = Vector2(-231, -7)
+
+[node name="enemy4" parent="." instance=ExtResource("7_ege65")]
+position = Vector2(-245, 108)
+
+[node name="enemy5" parent="." instance=ExtResource("7_ege65")]
+position = Vector2(-261, 238)
